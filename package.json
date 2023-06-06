@@ -1,0 +1,43 @@
+{
+  "name": "yellcode",
+  "version": "1.0.0",
+  "description": "a code generator based on plop....",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": "lib/index.js",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "commit": "git-cz",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YellRes/yellCode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YellRes/yellCode/issues"
+  },
+  "homepage": "https://github.com/YellRes/yellCode#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^2.1.0",
+    "commander": "^10.0.1",
+    "plop": "^3.1.2"
+  }
+}
