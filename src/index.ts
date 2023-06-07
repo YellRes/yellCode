@@ -1,18 +1,18 @@
-import { NodePlopAPI } from 'plop'
-import { input } from '@inquirer/prompts'
-import { program } from 'commander'
+import { Command } from 'commander'
+import { renderViews } from 'utils/renderTemplate'
+const program = new Command()
 
-program.option('--first').option('-s, --separator <char>')
-program.parse()
+program.name('yellCode').description('Cli to generate some program file').version('1.0.0')
 
-const options = program.opts()
-const limit = options.first ? 1 : undefined
-console.log(program.args[0].split(options.separator, limit))
+// 创建view页面
+program.option('-v, --view <type>', 'views name')
+program.parse(process.argv)
 
-// export default function (plop: NodePlopAPI) {
-//     plop.setGenerator('basic', {
-//         description: 'this is a skeleton plopFile',
-//         prompts: [],
-//         actions: [],
-//     })
-// }
+const init = () => {
+    const options = program.opts()
+    if (options.view) {
+        renderViews('templates/views', process.cwd(), options.view)
+    }
+}
+
+init()
