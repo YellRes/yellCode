@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import deletePlugin from 'rollup-plugin-delete'
+import alias from '@rollup/plugin-alias'
 
 export default defineConfig({
     input: 'src/index.ts',
@@ -26,6 +27,13 @@ export default defineConfig({
         commonjs(),
         deletePlugin({
             targets: ['lib/*'],
+        }),
+        alias({
+            entries: [
+                { find: '@', replacement: './src' },
+                { find: 'utils', replacement: './utils' },
+                { find: 'templates', replacement: './templates' },
+            ],
         }),
     ],
     resolve: {

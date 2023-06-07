@@ -1,5 +1,6 @@
 import { Command } from 'commander'
 import { renderViews } from 'utils/renderTemplate'
+import { a } from '@/a'
 const program = new Command()
 
 program.name('yellCode').description('Cli to generate some program file').version('1.0.0')
@@ -16,3 +17,4 @@ const init = () => {
 }
 
 init()
+a()
