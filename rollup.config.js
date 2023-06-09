@@ -29,18 +29,11 @@ export default defineConfig({
             targets: ['lib/*'],
         }),
         alias({
-            entries: [
-                { find: '@', replacement: './src' },
-                { find: 'utils', replacement: './utils' },
-                { find: 'templates', replacement: './templates' },
-            ],
+            entries: {
+                '@': './src',
+                utils: './utils',
+                templates: './templates',
+            },
         }),
     ],
-    resolve: {
-        alias: {
-            '@/*': 'src/*',
-            'utils/*': 'utils/*',
-            'templates/*': 'templates/*',
-        },
-    },
 })
