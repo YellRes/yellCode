@@ -8,5 +8,11 @@
  * 找到目录中的src目录
  * */
 import node from 'node:path'
+import fs from 'node:fs'
 
-const findPath = () => {}
+const findPath = () => {
+    const executionPath = process.cwd()
+    console.log('%c [ executionPath ]-15', 'font-size:13px; background:pink; color:#bf2c9f;', executionPath)
+
+    // 默认向上找 直到系统根目录
+}
