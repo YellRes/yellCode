@@ -16,7 +16,6 @@ const validateSrcPath = (srcPath) => {
     const targetDirs = ['router', 'views', 'apis']
 
     // router views apis
-
     for (let i = 0; i < pathDirs.length; i++) {
         let index = targetDirs.findIndex((item) => item === pathDirs[i])
         if (index !== -1) {
@@ -24,8 +23,11 @@ const validateSrcPath = (srcPath) => {
         }
     }
 
+    console.log(targetDirs, 'targetDirs')
+
     return targetDirs.length === 0
 }
+
 const findFilePathRoadToPath = (currentPath) => {
     let srcPath = ''
     while ((currentPath = path.dirname(currentPath))) {
@@ -33,11 +35,12 @@ const findFilePathRoadToPath = (currentPath) => {
         // src中是否有 router 的目录
         const pathDirs = fs.readdirSync(currentPath)
 
-        let srcPath = pathDirs.find((item) => item === 'src')
-        let isValidSrcPath = srcPath ? validateSrcPath(path.join(currentPath, srcPath)) : false
+        let currentSrcPath = pathDirs.find((item) => item === 'src')
+        let isValidSrcPath = currentSrcPath ? validateSrcPath(path.join(currentPath, currentSrcPath)) : false
+
         // 到了根目录后 停止
         if (path.dirname(currentPath) === currentPath || isValidSrcPath) {
-            srcPath = isValidSrcPath
+            srcPath = isValidSrcPath && path.join(currentPath, currentSrcPath)
             break
         }
     }
@@ -45,4 +48,4 @@ const findFilePathRoadToPath = (currentPath) => {
     return srcPath
 }
 
-console.log(findFilePathRoadToPath(currentPath))
+console.log(findFilePathRoadToPath(currentPath), 'hahha')
