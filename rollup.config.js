@@ -5,6 +5,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import deletePlugin from 'rollup-plugin-delete'
 import alias from '@rollup/plugin-alias'
+import json from '@rollup/plugin-json'
 
 export default defineConfig({
     input: 'src/index.ts',
@@ -23,6 +24,7 @@ export default defineConfig({
     plugins: [
         babel(),
         typescript(),
+        json(),
         resolve(),
         commonjs(),
         deletePlugin({

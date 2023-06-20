@@ -17,8 +17,8 @@ export const renderTemplate = (src: string, dest: string) => {
 }
 
 export const renderViews = (src: string, dest: string, directory: string) => {
-    fs.mkdirSync(directory)
     const finalDest = path.join(dest, directory)
+    fs.mkdirSync(finalDest)
 
     renderTemplate(src, finalDest)
 }
