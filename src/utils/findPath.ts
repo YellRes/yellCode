@@ -30,7 +30,7 @@ export const findPath = () => {
 
     // 默认向上找 直到系统根目录
     let srcPath: string | boolean = ''
-    while ((currentPath = path.dirname(currentPath))) {
+    while (currentPath) {
         // currentPath 所在的目录中是否有src 目录
         // src中是否有 router 的目录
         const pathDirs = fs.readdirSync(currentPath)
