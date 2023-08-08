@@ -1,2 +1,2 @@
 # yellCode
-a code generator based on plop....
+a code generator 

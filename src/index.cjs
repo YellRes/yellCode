@@ -47,5 +47,3 @@ const findFilePathRoadToPath = (currentPath) => {
 
     return srcPath
 }
-
-console.log(findFilePathRoadToPath(currentPath), 'hahha')

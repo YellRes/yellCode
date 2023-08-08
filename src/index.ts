@@ -1,30 +1,21 @@
 import path from 'node:path'
 import fs from 'node:fs'
 import { Command } from 'commander'
-import { renderViews } from '@/utils/renderTemplate.ts'
 import { findPath } from '@/utils/findPath.ts'
 import { routerAst } from '@/utils/ast/index.ts'
+import { renderViews } from '@/utils/renderTemplate.ts'
 import { formatCommandLineInput } from '@/utils/index.ts'
 
-const program = new Command()
-program.name('yellCode').description('Cli to generate some file').version('1.0.0')
-
-// 创建view页面
-
-// TODO:
-// yellCode create xxx
-
-program.option('-v, --view <type>', 'views name')
-program.parse(process.argv)
-
-const init = async () => {
-    const options = program.opts()
-    if (options.view) {
+const init = async (str: string) => {
+    // const options = program.opts()
+    if (str) {
         const srcPath = findPath()
         // TODO: 没有找到src目录需要提示错误
         if (!srcPath) return console.log('没有找到src目录，请确认命令的位置')
 
-        const { dirName, componentName, pathName } = formatCommandLineInput(options.view)
+        console.log(str, 'str')
+        const { dirName, componentName, pathName } = formatCommandLineInput(str)
+        console.log(dirName, componentName, pathName, 'dirName, componentName, pathName')
 
         try {
             // 生产views中页面
@@ -47,9 +38,30 @@ const init = async () => {
             fs.writeFileSync(apiPath, apiStr, 'utf-8')
             console.log('api 目录文件修改成功')
         } catch (e) {
+            console.log(e, 'e')
             console.log('目录创建失败 请核实')
         }
+    } else {
+        console.log('请输入页面名称')
     }
 }
 
-init()
+const program = new Command()
+program
+    .name('yellCode')
+    .command('create')
+    .description('Cli to generate some file')
+    .argument('<string>', 'file name')
+    .version('1.0.0')
+    .action((str) => {
+        init(str)
+    })
+
+// 创建view页面
+
+// TODO:
+// yellCode create xxx
+// DONE:
+
+// program.option('-v, --view <type>', 'views name')
+program.parse(process.argv)

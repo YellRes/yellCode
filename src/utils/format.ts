@@ -36,19 +36,19 @@ export const formatCommandLineInput = (commandLineInput: string) => {
 
     if (index) {
         if (commandLineInput.includes('-')) {
-            const [str1, str2] = commandLineInput.split('-')
-            const str2UpperCase = str2.replace(/^[a-z]/, (val) => val.toUpperCase())
+            const [str1, ...otherStr] = commandLineInput.split('-')
+            const other = otherStr.reduce((pre, cur) => pre + cur.replace(/^[a-z]/, (val) => val.toUpperCase()), '')
             const str1UpperCase = str1.replace(/^[a-z]/, (val) => val.toUpperCase())
 
             pathName = commandLineInput
-            componentName = str1 + str2UpperCase
-            dirName = str1UpperCase + str2UpperCase
+            componentName = str1 + other
+            dirName = str1UpperCase + other
         } else {
             const str1 = commandLineInput.slice(0, index)
             const str2 = commandLineInput.slice(index)
 
             const str1UpperCase = str1.replace(/^[a-z]/, (val) => val.toUpperCase())
-            const str2LowCase = str2.replace(/^[A-Z]/, (val) => val.toLowerCase())
+            const str2LowCase = str2.replace(/[A-Z]/g, (val) => `-${val.toLowerCase()}`)
 
             pathName = `${str1}-${str2LowCase}`
             componentName = commandLineInput
