@@ -1,6 +1,6 @@
 {
   "name": "yellcode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a code generator based on plop....",
   "main": "lib/index.cjs",
   "type": "module",
